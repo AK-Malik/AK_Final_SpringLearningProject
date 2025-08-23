@@ -5,13 +5,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class SimpleController {
 
-    //--------API Learning Thru Spring and Testing begins here-------------//
+     /**
+      *  External call begin from controller.  API Learning Thru Spring and Testing begins here
+      *  run the end point in the postman or similar tool like: method type: GET:  <a href="http://localhost:9099/AKSpringLearning/getMyMessage">...</a>
+      *  GET http://localhost:9099/AKSpringLearning/getMyMessage    (port and context, defined in application.properties
+      */
 
     @GetMapping("/getMyMessage")
-    public String getCustomMessage()
+    public String getCustomMessage() //method name doesn't matter as long as mapping is correct
     {
-        System.out.println("Printing, getMessage defined under SimpleController class ");
-        return "Success - I'm inside getMessage of SimpleController class";
+        System.out.println("Printing, getMessage defined under SimpleController class "); //this will be print in app logs
+        return "Success - I'm inside getMessage of SimpleController class";  //this will be returned in the postman
     }
 
     @PostMapping("/postMyMessage")
@@ -38,5 +42,4 @@ public class SimpleController {
         System.out.println("Printing deleteMyMessage under SimpleController class");
         return "Success - I'm in SimpleController.java class's deleteMessage";
     }
-
 }

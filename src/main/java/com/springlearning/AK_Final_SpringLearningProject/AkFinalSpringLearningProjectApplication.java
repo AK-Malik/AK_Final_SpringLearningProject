@@ -9,7 +9,7 @@ public class AkFinalSpringLearningProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AkFinalSpringLearningProjectApplication.class, args);
 
-        System.out.println("Welcome to New SpringAPI Project");
+        System.out.println("Welcome to New SpringAPI Project"); /*Just a custom message in logs once app runs */
     }
 
 }
