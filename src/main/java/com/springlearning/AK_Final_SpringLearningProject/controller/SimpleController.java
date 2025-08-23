@@ -34,7 +34,7 @@ public class SimpleController {
     public String patchMessage()
     {
         System.out.println("printing patching from SimpleController class");
-        return "Success - I am in SimpleController.java's patchMessage" ;
+        return "Success - I am in SimpleController.java's patchMessage";
     }
     @DeleteMapping("/deleteMyMessage")
     public String deleteMessage()

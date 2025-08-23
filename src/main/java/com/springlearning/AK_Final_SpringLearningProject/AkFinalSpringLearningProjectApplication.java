@@ -11,5 +11,4 @@ public class AkFinalSpringLearningProjectApplication {
 
         System.out.println("Welcome to New SpringAPI Project"); /*Just a custom message in logs once app runs */
     }
-
 }
