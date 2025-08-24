@@ -1,5 +1,6 @@
 package com.springlearning.AK_Final_SpringLearningProject.controller;
-
+import com.springlearning.AK_Final_SpringLearningProject.dao.SimpleDaoClass;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -42,4 +43,23 @@ public class SimpleController {
         System.out.println("Printing deleteMyMessage under SimpleController class");
         return "Success - I'm in SimpleController.java class's deleteMessage";
     }
+
+    //Calling the method of another class under this method:getADaoMyMessage
+    @Autowired
+    private SimpleDaoClass simpleDaoClass; //create an object of SimpleDaoClass
+    //Q: How to avoid nullPointerException
+    @GetMapping(path = "/getMeADaoMessage")
+    public String getMeADaoMyMessage ()
+      {
+         System.out.println("getMeADaoMyMessage under SimpleController class");
+         return simpleDaoClass.getAMessage();  //String printMessage = simpleDaoClass.getAMessage(); return printMessage;
+      }
+
+    @PostMapping(path ="/postMeADaoMessage")
+    public String postMyDaoMessage()
+    {
+        System.out.println("postDaoMyMessage under SimpleController class");
+        return simpleDaoClass.postAMessage();
+    }
+
 }
