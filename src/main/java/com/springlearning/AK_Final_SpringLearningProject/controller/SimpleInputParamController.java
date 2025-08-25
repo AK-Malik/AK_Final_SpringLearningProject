@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class SimpleInputParamController {
 
@@ -61,7 +63,7 @@ public class SimpleInputParamController {
     /********* Note - RequestParam also known as Query Param- Example:  run as GET using: http://localhost:9099/AKSpringLearning/getRequestParamExp?id=123 ****************************/
 
     @GetMapping(path="getRequestParamExp")
-    public String getRequestParamExample(@RequestParam("id") Integer id) {
+    public String getRequestParamExample(@RequestParam Integer id) {
         System.out.println("getPathParamExample /getPathVariable Example:");
         return "getPathVariableExample: " + id ;
     }
@@ -69,13 +71,46 @@ public class SimpleInputParamController {
     // both id &Name are mandatory else you will get 404 error
 
     @PostMapping(path="postRequestParamExp")
-    public ResponseEntity<String> postRequestParamExample(@RequestParam("id") Integer id ,  @RequestParam("name") String name) {
+    public ResponseEntity<String> postRequestParamExample(@RequestParam("id") Integer id ,  @RequestParam(value="name") String name) {
         System.out.println("postPathParamExample /postPathVariable Example:");
         return new ResponseEntity<String>( "postPathVariableExample: " + id +"--"+name , HttpStatus.valueOf(200)) ;
     }
+    /*
+    * Using responseEntity . Run as POST : http://localhost:9099/AKSpringLearning/requestParamMandatoryValue?id=123&name=anil
+     * id is mandatory and Name is optional. if id is missing, it will give 404 error. order if id or name doesn't matter
+     * Only id is mandatory
+     * If id is not provided then exception will be thrown with 400(Bad Request) as ResponseCode
+     * Key names should be strictly id and name
+     * If name is not provided "Sumita" is assigned as default value to RequestParam variable name
+    */
+    @PostMapping("/requestParamMandatoryValue")
+    public ResponseEntity<String> requestParamMandatoryValues(@RequestParam (required=true) String id, @RequestParam(required=false,defaultValue ="Kumar") String name) {
+        System.out.println("in requestParamMandatoryValue");
+        return new ResponseEntity<>("requestParamMandatoryValue: " + id + " - " + name, HttpStatus.OK);
+    }
 
- /****** --- Param Example -----------------*****/
+ /****** --- Request Param with multivalue as list Example -----------------*****/
+ /*
+  * Hit with : nameList = AK, nameList = Anil, nameList = Kumar, nameList = Sumita, nameList = Ram
+  * POST --> http://localhost:9099/AKSpringLearning/requestParamMultiValuesMandatory
+  * nameList is mandatory
+  * If nameList is not provided then exception will be thrown with 400(Bad Request) as ResponseCode
+  * Key name should be nameList
+  */
+ @PostMapping("/requestParamMultiValuesMandatory")  //params.  http://localhost:9099/AKSpringLearning/requestParamMultiValuesMandatory?nameList=A&nameList=B
+ public ResponseEntity<String> requestParamMultiValuesMandatoryEx(@RequestParam List<String> nameList) {
+     System.out.println("in requestParamMultiValuesMandatory");
+     return new ResponseEntity<>("requestParamMultiValuesMandatory: " + nameList,HttpStatus.OK);
+ }
 
+ //http://localhost:9099/AKSpringLearning/displayNamesDefined  - whether you add values in list it will pick default.
+    @PostMapping("/displayNamesDefinedbyAK")
+    // public ResponseEntity<String> myTestMethodWithRequestParam(@RequestParam (required = true, value = "names", defaultValue ="Anil, Kumar, Malik" ) String DisplayNames)
+    public ResponseEntity<String> myTestMethodWithRequestParam(@RequestParam (required = true, value = "names", defaultValue ="Anil, Kumar, Malik" ) List<String> DisplayNames)
+    {
+        System.out.println("Display myTestMethodWithRequestParam with Name String");
+        return new ResponseEntity<>("Given names printed as: "+ DisplayNames,HttpStatus.OK);
+    }
 
 
 }
