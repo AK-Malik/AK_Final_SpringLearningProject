@@ -1,5 +1,5 @@
 package com.springlearning.AK_Final_SpringLearningProject.controller;
-import com.springlearning.AK_Final_SpringLearningProject.dao.SimpleDaoClass;
+import com.springlearning.AK_Final_SpringLearningProject.Service.SimpleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,20 +46,27 @@ public class SimpleController {
 
     //Calling the method of another class under this method:getADaoMyMessage
     @Autowired
-    private SimpleDaoClass simpleDaoClass; //create an object of SimpleDaoClass
-    //Q: How to avoid nullPointerException
-    @GetMapping(path = "/getMeADaoMessage")
-    public String getMeADaoMyMessage ()
+    private SimpleService simpleservice; //create an object of SimpleService
+    //Q: How to avoid nullPointerException ??
+    @GetMapping(path = "/getMeFromServiceMessage")
+    public String getMeFromServiceMessage ()
       {
-         System.out.println("getMeADaoMyMessage under SimpleController class");
-         return simpleDaoClass.getAMessage();  //String printMessage = simpleDaoClass.getAMessage(); return printMessage;
+         System.out.println("getMeFromServiceMessage under SimpleController class");
+         return simpleservice.getAMessage();  //String printMessage = simpleDaoClass.getAMessage(); return printMessage;
       }
 
-    @PostMapping(path ="/postMeADaoMessage")
-    public String postMyDaoMessage()
+    @PostMapping(path ="/postMeFromServiceMessage")
+    public String postMeFromServiceMessage()
     {
-        System.out.println("postDaoMyMessage under SimpleController class");
-        return simpleDaoClass.postAMessage();
+        System.out.println("postMeFromServiceMessage under SimpleController class");
+        return simpleservice.postAMessage();
+    }
+//Return Type is an object of SimpleService //??
+    @PostMapping(path ="/postMeFromServiceMessageWithObjectReturnType")
+    public SimpleService postMeFromSimpleServiceWithObjectReturnType()
+    {
+        System.out.println("postMeFromServiceMessage under SimpleController class with object return type");
+        return simpleservice;
     }
 
 }

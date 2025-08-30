@@ -14,7 +14,7 @@ public class UrlEncoderController {
      * Both are mandatory
      * If any one of them is not provided then exception will be thrown with 400(Bad Request) as ResponseCode
      * Key names should be strictly Id and Name
-     * @RequestParam is implicitly used (if not mentioned explicitly)
+     * @RequestParam is implicitly used (if not mentioned explicitly). if no value is defined, null will be return as input id or name. if both provided url encoded and request param, both will be returned
      */
     @PostMapping("/SpringFormURLEncoded")
     public ResponseEntity<String> springFormUrlencoded(Integer Id, String Name) {

@@ -27,7 +27,7 @@ public class SimpleInputParamController {
      //Explanation: @PathVariable("id") tells Spring to extract the value of the id variable from the URL path and assign it to the id parameter.
      //For example, if your endpoint is /user/{id}, and you call /user/123, then id will be 123. The method returns a String (usually a response or view name).
 
-     @GetMapping(path="getPathParamExp/{id}")
+     @GetMapping(path="/getPathParamExp/{id}") //Works with or without / e.g. getPathParamExp/{id}" or /getPathParamExp/{id}"
      public String getPathParamExample(@PathVariable("id") Integer id) {
          System.out.println("getPathParamExample /getPathVariable Example:");
          return "getPathVariableExample: " + id ;
@@ -42,8 +42,8 @@ public class SimpleInputParamController {
      * Full Control over HTTP Response:When building RESTful APIs, it is often necessary to provide more than just the data in the response. ResponseEntity allows explicit control over the HTTP status code (e.g., 200 OK, 201 Created, 404 Not Found), exception, custom headers, and the response body. This enables more precise communication with the client about the outcome of a request.
      */
     @GetMapping(path = "/spring-pathParam/{Id}/{name}")
-                                                            //{Id} will be like /1 and {name} like AK . http://localhost:9999/AKSpringLearning/spring-pathParam/1/Anil
-    public ResponseEntity<String> springPathParam(@PathVariable("Id") Integer Id, @PathVariable("name") String name) {
+                                                            //{Id} will be like /1 and {name} like AK . http://localhost:9099/AKSpringLearning/spring-pathParam/1/Anil
+    public ResponseEntity<String> springPathParam(@PathVariable(value="Id") Integer Id, @PathVariable(value="name") String name) {
         System.out.println("spring-pathParam /pathVariable Example:");
         return new ResponseEntity<String>("spring-pathParam/pathVariable Example: " + Id + " - " + name, HttpStatus.OK);
     }
@@ -70,7 +70,7 @@ public class SimpleInputParamController {
     //Using responseEntity . Run as POST : http://localhost:9099/AKSpringLearning/postRequestParamExp?id=123&name=anil
     // both id &Name are mandatory else you will get 404 error
 
-    @PostMapping(path="postRequestParamExp")
+    @PostMapping(path="/postRequestParamExp")
     public ResponseEntity<String> postRequestParamExample(@RequestParam("id") Integer id ,  @RequestParam(value="name") String name) {
         System.out.println("postPathParamExample /postPathVariable Example:");
         return new ResponseEntity<String>( "postPathVariableExample: " + id +"--"+name , HttpStatus.valueOf(200)) ;
@@ -103,10 +103,10 @@ public class SimpleInputParamController {
      return new ResponseEntity<>("requestParamMultiValuesMandatory: " + nameList,HttpStatus.OK);
  }
 
- //http://localhost:9099/AKSpringLearning/displayNamesDefined  - whether you add values in list it will pick default.
+ //http://localhost:9099/AKSpringLearning/displayNamesDefinedbyAK  - whether you add values in list it will pick default.
     @PostMapping("/displayNamesDefinedbyAK")
     // public ResponseEntity<String> myTestMethodWithRequestParam(@RequestParam (required = true, value = "names", defaultValue ="Anil, Kumar, Malik" ) String DisplayNames)
-    public ResponseEntity<String> myTestMethodWithRequestParam(@RequestParam (required = true, value = "names", defaultValue ="Anil, Kumar, Malik" ) List<String> DisplayNames)
+    public ResponseEntity<String> myTestMethodWithRequestParam(@RequestParam (required = true, value = "names", defaultValue ="Anil, Kumar, Singh, Malik" ) List<String> DisplayNames)
     {
         System.out.println("Display myTestMethodWithRequestParam with Name String");
         return new ResponseEntity<>("Given names printed as: "+ DisplayNames,HttpStatus.OK);

@@ -2,7 +2,7 @@ package com.springlearning.AK_Final_SpringLearningProject.model;
 
 public class UserModel {
 
-    int  id;
+    Integer  id;
     String name;
     String email;
     String city;
@@ -12,11 +12,13 @@ public class UserModel {
         this.name = name;
         this.email = email;
         this.city = city;
+      //below can be commented. only for understanding. if @RequestBody is used in Any JSON controller then this constructor will be auto called as RequestBody in JSON is implicitly called and converted into POJO
+        System.out.println("Inputs received in UserModel POJO - UserModel Created :"+id+"-"+name+"-"+getEmail()+"-"+getCity());  //name or getName() both works. this is logs to check what value is passed to constructor.
     }
-    public int getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
