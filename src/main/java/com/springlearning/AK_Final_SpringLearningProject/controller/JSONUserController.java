@@ -6,9 +6,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.DocFlavor;
-import java.util.ArrayList;
-
 @RestController
 public class JSONUserController {
 
@@ -32,7 +29,7 @@ public class JSONUserController {
     @GetMapping(value = "/springJson/createUserB",produces = MediaType.APPLICATION_JSON_VALUE)
         public ResponseEntity<UserModel> springJSONExample() {
         UserModel userModel = new UserModel(2, "Anil", "ak@test.com", "Panipat");
-        System.out.println("spring-JSON Example - UserCreated Successfully");
+        System.out.println("spring-JSON Example - UserCreated Successfully:"+userModel);
         return new ResponseEntity<>(userModel, HttpStatus.CREATED);
     }
 
