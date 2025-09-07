@@ -1,7 +1,5 @@
 package com.springlearning.AK_Final_SpringLearningProject.model;
 
-import org.springframework.stereotype.Repository;
-
 public class ErrorResponse {
 
     private int httpErrorCode;
@@ -24,17 +22,7 @@ public class ErrorResponse {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
+//---------------------------------------------------------------------
 //    public EmpResponseError_SK validateHTTPResponse(Boolean httpErrorCode) {
 //        if(httpErrorCode==Boolean.TRUE)
 //        {
@@ -49,7 +37,7 @@ public class ErrorResponse {
 //        return this;
 //    }
 //
-
+ //-----------------------------------------------------------------
 
 
 }
