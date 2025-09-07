@@ -1,7 +1,5 @@
 package com.springlearning.AK_Final_SpringLearningProject.model;
 
-import java.util.Objects;
-
 public class EmployeeModel {
 
     Integer empId;
@@ -27,19 +25,8 @@ public class EmployeeModel {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        EmployeeModel that = (EmployeeModel) o;
-        return Objects.equals(empId, that.empId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(empId);
-    }
-
-    @Override
     public String toString() {
         return "EmployeeModel: [ empId: "+empId+", empName: "+empName+" ]";
+       // return "EmployeeModel: [ empId: "+getEmpId()+", empName: "+getEmpName()+" ]";    //both works
     }
 }

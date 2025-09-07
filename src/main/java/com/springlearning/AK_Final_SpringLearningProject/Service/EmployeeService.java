@@ -7,15 +7,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service                     //will create an object of employeeservice and store in Spring IOC container. implementing class can use @Autowired to download it from ICO
+@Service      //Will create an object of EmployeeService and store in Spring IOC container. implementing class can use @Autowired to download it from IOC Container
 public class EmployeeService {
     public ResponseEntity<?> validateReturnResponse(List<EmployeeModel> empRecord, Integer empId) {
 
         if (empRecord.size() != 0) {
-            for (EmployeeModel emp : empRecord) {
+            for (EmployeeModel emp : empRecord) {    //EmployeeModel emp = null; for (int i = 0; i < empRecord.size(); i++) { emp = empRecord.get(i);
                 if (emp.getEmpId().equals(empId)) {
-                    System.out.println("Requested empId is :" + emp.getEmpId() + ":" + emp.getEmpName() + "-" + emp);
-                    return new ResponseEntity<>(emp, HttpStatus.OK);
+                    System.out.println("Requested empId is :" + emp.getEmpId() + ":" + emp.getEmpName() + "And List Object:" + emp);
+                    return new ResponseEntity<>(emp, HttpStatus.OK);    //returns an object of EmployeeModel
                 }
             }
         }
@@ -23,7 +23,7 @@ public class EmployeeService {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setHttpErrorCode(HttpStatus.NOT_FOUND.value());
         errorResponse.setErrorMessage("Data Not Found...");
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);  //returns a ResponseEntity object of type ErrorResponse
     }
 }
 
